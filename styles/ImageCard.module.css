@@ -1,0 +1,26 @@
+.imageCard {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+}
+
+.image {
+  border-radius: 5%;
+}
+
+.description {
+  font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: .5em;
+  width: 100%;
+}
+
+.titleRating {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
