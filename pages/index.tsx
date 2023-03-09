@@ -3,23 +3,35 @@ import Image from "next/image";
 import { Inter } from "next/font/google";
 import styles from "@/styles/Home.module.css";
 import { HomeCard } from "@/components/HomeCard";
-import { useCallback, useContext, useEffect } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { HomeListContext } from "../utils/HomeListContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   const { homes, getNextPage } = useContext(HomeListContext);
+  const [scrolling, setScrolling] = useState(false);
   const infiniteScroll = useCallback(() => {
-    const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
-    if (scrollTop + clientHeight >= scrollHeight) {
-      getNextPage(20);
+    if (scrolling) {
+      const { scrollTop, clientHeight, scrollHeight } =
+        document.documentElement;
+      if (scrollTop + clientHeight >= scrollHeight) {
+        getNextPage(30);
+      }
+      setScrolling(false);
     }
-  }, [getNextPage]);
+  }, [getNextPage, setScrolling, scrolling]);
 
+  const scrollHandler = useCallback(() => setScrolling(true), [setScrolling]);
   useEffect(() => {
-    window.addEventListener("scroll", infiniteScroll);
-    return () => window.removeEventListener("scroll", infiniteScroll);
+    const interval = setInterval(() => {
+      infiniteScroll();
+    }, 500);
+    window.addEventListener("scroll", scrollHandler);
+    return () => {
+      window.removeEventListener("scroll", scrollHandler);
+      clearInterval(interval);
+    };
   });
   return (
     <>

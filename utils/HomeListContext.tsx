@@ -36,7 +36,7 @@ export const HomeListContextProvider = ({
     setState(APIState.SUCCESS);
   };
   useEffect(() => {
-    getNextPage(20);
+    getNextPage(30);
   }, []);
 
   return (

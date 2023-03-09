@@ -43,13 +43,12 @@ export const ImageCarousel: React.FC<ImageCarouselProps> = ({
         blurDataURL="/ImagePlaceholder.svg"
         src={images[currentImage]}
       />
-      <ImageIndexDots
-        numberOfImages={images.length}
-        currentIndex={currentImage}
-      />
-      {/* <button >
-        ⏭️
-      </button> */}
+      {!loading && (
+        <ImageIndexDots
+          numberOfImages={images.length}
+          currentIndex={currentImage}
+        />
+      )}
     </div>
   );
 };
