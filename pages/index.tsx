@@ -2,11 +2,25 @@ import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "next/font/google";
 import styles from "@/styles/Home.module.css";
-import { ImageCard } from "@/components/ImageCard";
+import { HomeCard } from "@/components/HomeCard";
+import { useCallback, useContext, useEffect } from "react";
+import { HomeListContext } from "../utils/HomeListContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+  const { homes, getNextPage } = useContext(HomeListContext);
+  const infiniteScroll = useCallback(() => {
+    const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
+    if (scrollTop + clientHeight >= scrollHeight) {
+      getNextPage(20);
+    }
+  }, [getNextPage]);
+
+  useEffect(() => {
+    window.addEventListener("scroll", infiniteScroll);
+    return () => window.removeEventListener("scroll", infiniteScroll);
+  });
   return (
     <>
       <Head>
@@ -15,13 +29,11 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <ImageCard
-        images={[
-          "/0200BFB6-A129-4755-BA9A-0DD241DA33C8.jpg",
-          "/0200BFB6-A129-4755-BA9A-0DD241DA33C8_1.jpg",
-          "/0200BFB6-A129-4755-BA9A-0DD241DA33C8_2.jpg",
-        ]}
-      />
+      <div className={styles.flexGrid}>
+        {homes.map((home, i) => (
+          <HomeCard home={home} key={i} />
+        ))}
+      </div>
     </>
   );
 }

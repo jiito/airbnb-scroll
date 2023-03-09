@@ -5,7 +5,28 @@
   outline: none;
   padding: 0;
   position: absolute;
+  z-index: 1;
+  display: inline;
+  opacity: 75%;
+}
+.left {
+  top: 50%;
+  left: 10%;
+  transform: translate(-50%, -50%);
+}
+.right {
   top: 50%;
   left: 90%;
-  z-index: 1;
+  transform: translate(-50%, -50%);
+}
+.arrow {
+  position: absolute;
+  left: calc(50% - 2px);
+  top:calc(50% - 7px); 
+}
+.button:hover {
+  transform: scale(1.2, 1.2) translate(-50%, -50%);
+  opacity: 100%;
+  /* smooth short transition */
+  transition: all .2s ease-in-out;
 }
