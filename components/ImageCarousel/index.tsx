@@ -16,7 +16,7 @@ export const ImageCarousel: React.FC<ImageCarouselProps> = ({
 }) => {
   const [currentImage, setCurrentImage] = useState(0);
   const imageLoader = ({ src, width }: { src: string; width: number }) => {
-    return `${src}&fit=crop&w=${width}&h=${width}`;
+    return `${src}&fit=crop&w=${width}&h=${width}&q=30`;
   };
 
   return (

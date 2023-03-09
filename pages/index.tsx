@@ -15,7 +15,7 @@ export default function Home() {
     if (scrolling) {
       const { scrollTop, clientHeight, scrollHeight } =
         document.documentElement;
-      if (scrollTop + clientHeight >= scrollHeight) {
+      if (scrollTop + clientHeight >= scrollHeight - 500) {
         getNextPage(30);
       }
       setScrolling(false);
@@ -26,7 +26,7 @@ export default function Home() {
   useEffect(() => {
     const interval = setInterval(() => {
       infiniteScroll();
-    }, 500);
+    }, 100);
     window.addEventListener("scroll", scrollHandler);
     return () => {
       window.removeEventListener("scroll", scrollHandler);
