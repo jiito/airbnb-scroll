@@ -15,6 +15,10 @@ export const ImageCarousel: React.FC<ImageCarouselProps> = ({
   onLoadComplete,
 }) => {
   const [currentImage, setCurrentImage] = useState(0);
+  const imageLoader = ({ src, width }: { src: string; width: number }) => {
+    return `${src}&fit=crop&w=${width}&h=${width}`;
+  };
+
   return (
     <div className={styles.container}>
       {currentImage > 0 && !loading && (
@@ -31,6 +35,7 @@ export const ImageCarousel: React.FC<ImageCarouselProps> = ({
       )}
       <Image
         className={styles.image}
+        loader={imageLoader}
         alt="Home image"
         fill
         onLoadingComplete={onLoadComplete}

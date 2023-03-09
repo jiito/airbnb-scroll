@@ -36,16 +36,6 @@ export const HomeListContextProvider = ({
     setState(APIState.SUCCESS);
   };
   useEffect(() => {
-    // setHomes(
-    //   Array(20).fill({
-    //     images: [],
-    //     city: { name: "Austin", state: "Texas" },
-    //     avgRating: 10,
-    //     location: 10,
-    //     dates: "10",
-    //     pricePerNight: 100,
-    //   } as Home)
-    // );
     getNextPage(20);
   }, []);
 

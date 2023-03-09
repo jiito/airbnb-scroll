@@ -2,7 +2,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { Home } from "../../types/Home";
 import { HomeGenerator } from "../../utils/HomeGenerator";
-import { Unsplash } from "../../utils/Unsplash";
+import { unsplash, Unsplash } from "../../utils/Unsplash";
 
 type Data = {
   homes: Home[];
@@ -15,7 +15,6 @@ export default async function handler(
   res: NextApiResponse<Data>
 ) {
   const limit = parseInt(req.query.limit as string);
-  const unsplash = new Unsplash();
   // get 60 random images
   await unsplash.getImages();
   await unsplash.getImages();

@@ -13,7 +13,7 @@ export class Unsplash {
     }
     const API_URL = `https://api.unsplash.com/photos/random?client_id=${process.env.UNSPLASH_API_KEY}&query=house&count=${count}`;
     const { data } = await axios.get(API_URL);
-    this.imageUrls = [...this.imageUrls!, ...data.map((i: any) => i.urls.full)];
+    this.imageUrls = [...this.imageUrls!, ...data.map((i: any) => i.urls.raw)];
   }
   get images() {
     return this.imageUrls;
@@ -26,3 +26,4 @@ export class Unsplash {
     return this.images![randomIndex];
   }
 }
+export const unsplash = new Unsplash();
