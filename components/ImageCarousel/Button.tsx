@@ -9,7 +9,6 @@ export const ImageButton: React.FC<ButtonProps & ButtonSide> = ({
 }) => {
   return (
     <button className={`${styles.button}  ${styles[side]}`} {...rest}>
-      {/* circle svg */}
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
         <circle cx={12} cy={12} r="12" fill="white" />
       </svg>
