@@ -39,11 +39,15 @@ export const HomeCard: React.FC<ImageCardProps> = ({ home }) => {
             <p>
               <strong>{`${home.city.name}, ${home.city.state}`}</strong>
             </p>
-            <p>⭐️ {home.avgRating.toPrecision(2)}</p>
+            <p className={`${styles.rating}`}>
+              {"\u2605"} {home.avgRating.toFixed(2)}
+            </p>
           </div>
-          <p>Distance</p>
+          <p>{home.distance} miles away</p>
           <p>{home.dates} </p>
-          <p>{home.pricePerNight}</p>
+          <p>
+            <strong>${home.pricePerNight}</strong> night
+          </p>
         </div>
       )}
     </div>

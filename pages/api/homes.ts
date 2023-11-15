@@ -23,7 +23,6 @@ export default async function handler(
   for (let i = 0; i < limit; i++) {
     const home = HomeGenerator.generate(unsplash);
     homes.push(home);
-    console.log(home.city, home.images);
   }
   res.status(200).json({ homes, limit, size: homes.length });
 }

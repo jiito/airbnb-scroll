@@ -2,7 +2,7 @@ export interface Home {
   images: string[];
   avgRating: number;
   city: City;
-  location: number;
+  distance: number;
   dates: string;
   pricePerNight: number;
 }

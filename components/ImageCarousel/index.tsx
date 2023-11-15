@@ -16,7 +16,7 @@ export const ImageCarousel: React.FC<ImageCarouselProps> = ({
 }) => {
   const [currentImage, setCurrentImage] = useState(0);
   const imageLoader = ({ src, width }: { src: string; width: number }) => {
-    return `${src}&fit=crop&w=${200}&h=${200}`;
+    return `${src}&fit=crop&w=${width}`;
   };
 
   return (
@@ -37,8 +37,8 @@ export const ImageCarousel: React.FC<ImageCarouselProps> = ({
         className={styles.image}
         loader={imageLoader}
         alt="Home image"
-        width={200}
-        height={200}
+        fill
+        sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 20vw"
         priority
         onLoadingComplete={onLoadComplete}
         placeholder="blur"

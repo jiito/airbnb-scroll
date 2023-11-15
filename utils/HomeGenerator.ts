@@ -26,14 +26,13 @@ export class HomeGenerator {
     let pricePerNight = 100;
     let images = this.getImages(unsplash);
     let avgRating = Math.random() * 5;
-    let randomDistance = Math.random() * 100;
     let city = this.getCity();
     return {
       images,
       pricePerNight,
       avgRating,
       city: city,
-      location: randomDistance,
+      distance: this.getDistance(),
       dates: this.getDates(),
     } as Home;
   }
@@ -44,8 +43,32 @@ export class HomeGenerator {
       .map(() => unsplash.getRandomImage());
   }
   private static getDates(): string {
-    return "Dec 12-14";
+    let startDay = Math.floor(Math.random() * 28) + 1;
+    let endDay = startDay + Math.floor(Math.random() * (30 - startDay));
+    let month = Math.floor(Math.random() * 12) + 1;
+    let year = new Date().getFullYear(); // get current year
+
+    // Create date objects
+    let startDate = new Date(year, month - 1, startDay);
+    let endDate = new Date(year, month - 1, endDay);
+
+    // Convert to English names
+    let startString = startDate.toLocaleString("en-US", {
+      month: "short",
+      day: "numeric",
+    });
+    let endString = endDate.toLocaleString("en-US", {
+      month: "short",
+      day: "numeric",
+    });
+
+    return `${startString} – ${endString}`;
   }
+
+  private static getDistance(): number {
+    return Math.round(Math.random() * 100);
+  }
+
   private static getCity(): City {
     return CITY_LIST[Math.round(Math.random() * (CITY_LIST.length - 1))];
   }
